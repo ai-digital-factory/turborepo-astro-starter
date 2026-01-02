@@ -6,6 +6,8 @@ A modern monorepo starter template built with Turborepo and Astro. This project 
 
 - 🚀 **Turborepo** - High-performance monorepo build system with intelligent caching
 - ⚡ **Astro** - Modern web framework for building fast, content-focused websites
+- ⚛️ **React** - UI components with React (via `@astrojs/react` integration)
+- 🎨 **Tailwind CSS** - Utility-first CSS framework for styling
 - 📦 **pnpm Workspace** - Efficient package management with workspace support
 - 🔧 **TypeScript** - Full type safety across the monorepo
 - 🎨 **Prettier** - Consistent code formatting
@@ -82,6 +84,8 @@ turbo-repo-astro-starter/
 
 - **[Turborepo](https://turbo.build/)** - Monorepo build system and task runner
 - **[Astro](https://astro.build/)** - Web framework for building fast, content-focused websites
+- **[React](https://react.dev/)** - UI library for building user interfaces
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[TypeScript](https://www.typescriptlang.org/)** - Typed JavaScript at scale
 - **[Prettier](https://prettier.io/)** - Opinionated code formatter
 - **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager
@@ -90,4 +94,6 @@ turbo-repo-astro-starter/
 
 - [Turborepo Documentation](https://turbo.build/repo/docs)
 - [Astro Documentation](https://docs.astro.build/)
+- [Astro React Integration](https://docs.astro.build/en/guides/integrations-guide/react/)
+- [Astro Tailwind Integration](https://docs.astro.build/en/guides/integrations-guide/tailwind/)
 - [pnpm Documentation](https://pnpm.io/motivation)
