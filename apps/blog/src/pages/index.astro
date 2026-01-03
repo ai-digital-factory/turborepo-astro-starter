@@ -1,8 +1,90 @@
 ---
-import Welcome from "../components/Welcome.tsx";
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@repo/ui";
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort(
+  (a, b) => b.data.createdDate.valueOf() - a.data.createdDate.valueOf(),
+);
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
 ---
 
 <Layout>
-  <Welcome client:load />
+  <main class="max-w-4xl mx-auto p-6 py-12">
+    <header class="mb-12 text-center">
+      <h1
+        class="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-blue-600"
+      >
+        Our Blog
+      </h1>
+      <p class="text-xl text-muted-foreground">
+        Stay updated with the latest news and insights.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        sortedPosts.map((post) => (
+          <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
+            {post.data.image && (
+              <div class="aspect-video w-full overflow-hidden rounded-t-lg">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="object-cover w-full h-full"
+                />
+              </div>
+            )}
+            <CardHeader>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-700 rounded-full">
+                  Post
+                </span>
+                <span class="text-xs text-muted-foreground">
+                  {formatDate(post.data.createdDate)}
+                </span>
+              </div>
+              <CardTitle className="line-clamp-2">{post.data.title}</CardTitle>
+              {post.data.description && (
+                <CardDescription className="line-clamp-3">
+                  {post.data.description}
+                </CardDescription>
+              )}
+            </CardHeader>
+            <CardContent className="mt-auto pt-0">
+              <div class="flex items-center gap-3 pt-4 border-t border-border">
+                <div class="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                  {post.data.author.charAt(0)}
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-sm font-semibold leading-none">
+                    {post.data.author}
+                  </span>
+                  {post.data.updatedDate && (
+                    <span class="text-[10px] text-muted-foreground">
+                      Updated: {formatDate(post.data.updatedDate)}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))
+      }
+    </div>
+  </main>
 </Layout>
