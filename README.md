@@ -13,6 +13,7 @@ A modern monorepo starter template built with Turborepo and Astro. This project 
 - 🔧 **TypeScript** - Full type safety across the monorepo
 - 🎨 **Prettier** - Consistent code formatting
 - 🏗️ **Optimized Builds** - Parallel task execution and smart caching
+- 📏 **Shared ESLint Config** - Centralized linting rules for Astro, React, and TypeScript
 
 ## Prerequisites
 
@@ -71,8 +72,12 @@ turbo-repo-astro-starter/
 │   └── blog/          # Astro blog application
 │       ├── src/       # Source files
 │       ├── public/    # Static assets
+│       ├── eslint.config.mjs # Local ESLint config (extends shared)
 │       └── package.json
 ├── packages/
+│   ├── eslint-config/ # Shared ESLint configuration
+│   │   ├── astro.js   # Astro + React + TS flat config
+│   │   └── package.json
 │   └── ui/            # Shared UI component library (shadcn UI)
 │       ├── src/
 │       │   ├── components/ui/  # shadcn UI components
@@ -90,6 +95,7 @@ turbo-repo-astro-starter/
 
 ### Packages
 
+- **@repo/eslint-config** - Shared ESLint configuration package located in `packages/eslint-config/`. Centralizes linting rules and dependencies for Astro, React, and TypeScript.
 - **@repo/ui** - Shared UI component library built with shadcn UI, located in `packages/ui/`. This package contains reusable React components that can be used across all apps in the monorepo.
 
 ## Tech Stack
@@ -131,8 +137,30 @@ The project includes a shared UI package (`@repo/ui`) with shadcn UI components.
 - [x] Create a reusable ui library
 - [ ] Use common typescript dependency
 - [x] add pre commit hook to check if format is correct via husky
-- [ ] create reusable eslint package
+- [x] create reusable eslint package
 - [ ] add cursor rule to run pmpm lint and pnpm format too after making changes
+
+## ESLint Configuration
+
+The monorepo uses a shared ESLint configuration to ensure code quality and consistency across all apps and packages.
+
+### Usage in Apps
+
+To use the shared configuration in a new Astro app:
+
+1. Add the shared package to your `devDependencies`:
+
+   ```bash
+   pnpm add -D @repo/eslint-config --filter [app-name]
+   ```
+
+2. Create an `eslint.config.mjs` file in your app's root and extend the shared config:
+
+   ```javascript
+   import astroConfig from "@repo/eslint-config/astro.js";
+
+   export default [...astroConfig];
+   ```
 
 ## Learn More
 
