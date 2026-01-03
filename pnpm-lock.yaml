@@ -48,9 +48,24 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.6
         version: 0.9.6(prettier-plugin-astro@0.13.0)(prettier@3.7.4)(typescript@5.9.2)
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
       '@tailwindcss/vite':
         specifier: ^4.1.18
         version: 4.1.18(vite@6.4.1(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
+      eslint:
+        specifier: ^9.17.0
+        version: 9.39.2(jiti@2.6.1)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+      vite-tsconfig-paths:
+        specifier: ^6.0.3
+        version: 6.0.3(typescript@5.9.2)(vite@6.4.1(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
+
+  packages/eslint-config:
+    dependencies:
       eslint:
         specifier: ^9.17.0
         version: 9.39.2(jiti@2.6.1)
@@ -73,14 +88,11 @@ importers:
         specifier: ^15.14.0
         version: 15.15.0
       typescript:
-        specifier: 5.9.2
+        specifier: '>=5.0.0'
         version: 5.9.2
       typescript-eslint:
         specifier: ^8.18.1
         version: 8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
-      vite-tsconfig-paths:
-        specifier: ^6.0.3
-        version: 6.0.3(typescript@5.9.2)(vite@6.4.1(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
 
   packages/ui:
     dependencies:
