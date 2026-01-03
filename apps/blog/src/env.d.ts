@@ -1,8 +1,8 @@
 /// <reference types="astro/client" />
 
-declare var Astro: Readonly<import('astro').AstroGlobal>;
+declare var Astro: Readonly<import("astro").AstroGlobal>;
 
-declare module '*.svg' {
+declare module "*.svg" {
   const content: {
     src: string;
     width: number;
@@ -10,4 +10,3 @@ declare module '*.svg' {
   };
   export default content;
 }
-
