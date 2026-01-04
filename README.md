@@ -139,6 +139,8 @@ The project includes a shared UI package (`@repo/ui`) with shadcn UI components.
 - [x] add pre commit hook to check if format is correct via husky
 - [x] create reusable eslint package
 - [ ] add cursor rule to run pmpm lint and pnpm format too after making changes
+- [ ] create reusable vite config package
+- [ ] create reusable typescript config package
 
 ## ESLint Configuration
 

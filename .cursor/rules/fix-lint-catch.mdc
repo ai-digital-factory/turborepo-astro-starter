@@ -1,0 +1,47 @@
+---
+description: Ensure that 'pnpm lint' catches errors by updating the linting mechanism rather than fixing the code.
+globs:
+---
+
+# 🛡️ Fix Lint Catch Rule
+
+Ensure that `pnpm lint` correctly identifies errors by refining the linting infrastructure rather than modifying the source code.
+
+## 📋 Steps to Follow
+
+1. **Analyze Detection Gaps**
+   - Determine why the error is currently being missed.
+   - **Common Root Causes:**
+     - The `lint` script in `package.json` excludes specific file types or directories.
+     - ESLint configuration is missing necessary plugins or parsers.
+     - `.eslintignore` is over-eagerly excluding files.
+
+2. **Refine Linting Configuration**
+   - Update the `lint` command in `package.json` for broader coverage.
+   - **Example:** `eslint . --ext .js,.jsx,.ts,.tsx,.astro`
+   - Adjust `.eslintignore` or ESLint rules if they are suppressing the error.
+
+3. **Strictly Configuration Only**
+   - Focus entirely on the linting mechanism. Do **not** touch the code causing the error.
+
+## 📝 Example Configuration Fix
+
+_Apply changes to the relevant `package.json`:_
+
+```json
+{
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro"
+  }
+}
+```
+
+After implementing the fix, verify that `pnpm lint` now successfully flags the previously ignored error.
+
+---
+
+> [!IMPORTANT]
+>
+> ### 🛑 EXTREMELY IMPORTANT NOTE
+>
+> **DO NOT FIX THE CODE TO RESOLVE THE ERROR.** Your task is exclusively to update the **linting mechanism** (commands, configurations, or ignore files) so that the error is properly caught and reported.

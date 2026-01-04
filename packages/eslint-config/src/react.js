@@ -1,4 +1,3 @@
-import eslintPluginAstro from "eslint-plugin-astro";
 import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
@@ -10,7 +9,7 @@ import globals from "globals";
 export default [
   // Base configuration
   {
-    ignores: ["dist", ".astro", "node_modules"],
+    ignores: ["dist", "dist-electron", "node_modules", ".turbo"],
   },
 
   // TypeScript configuration
@@ -44,32 +43,8 @@ export default [
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off", // Not needed for modern React/Astro
-      "react/no-unknown-property": "error", // Catch 'class' instead of 'className' in React
-    },
-  },
-
-  // Astro configuration
-  ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginAstro.configs["jsx-a11y-recommended"],
-  {
-    files: ["**/*.astro"],
-    plugins: {
-      react: reactPlugin,
-    },
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
-    rules: {
-      "react/no-unknown-property": "off", // Astro uses 'class', so we disable this rule for .astro files
+      "react/react-in-jsx-scope": "off",
+      "react/no-unknown-property": "error",
     },
   },
 
