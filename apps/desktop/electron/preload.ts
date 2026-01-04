@@ -3,12 +3,22 @@ import { ipcRenderer, contextBridge } from "electron";
 // Whitelist of allowed channels
 const ALLOWED_CHANNELS = ["main-process-message"] as const;
 
-type AllowedChannel = (typeof ALLOWED_CHANNELS)[number];
+export type AllowedChannel = (typeof ALLOWED_CHANNELS)[number];
+
+export interface IpcRendererApi {
+  on(
+    channel: AllowedChannel,
+    listener: (...args: unknown[]) => void,
+  ): (() => void) | undefined;
+  off(channel: AllowedChannel, listener: (...args: unknown[]) => void): void;
+  send(channel: AllowedChannel, ...args: unknown[]): void;
+  invoke(channel: AllowedChannel, ...args: unknown[]): Promise<unknown>;
+}
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", {
-  on(channel: string, listener: (...args: unknown[]) => void) {
-    if (ALLOWED_CHANNELS.includes(channel as AllowedChannel)) {
+  on(channel: AllowedChannel, listener: (...args: unknown[]) => void) {
+    if (ALLOWED_CHANNELS.includes(channel)) {
       const subscription = (
         _event: Electron.IpcRendererEvent,
         ...args: unknown[]
@@ -20,8 +30,8 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
       };
     }
   },
-  off(channel: string, listener: (...args: unknown[]) => void) {
-    if (ALLOWED_CHANNELS.includes(channel as AllowedChannel)) {
+  off(channel: AllowedChannel, listener: (...args: unknown[]) => void) {
+    if (ALLOWED_CHANNELS.includes(channel)) {
       ipcRenderer.removeListener(
         channel,
         listener as unknown as (
@@ -31,13 +41,13 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
       );
     }
   },
-  send(channel: string, ...args: unknown[]) {
-    if (ALLOWED_CHANNELS.includes(channel as AllowedChannel)) {
+  send(channel: AllowedChannel, ...args: unknown[]) {
+    if (ALLOWED_CHANNELS.includes(channel)) {
       ipcRenderer.send(channel, ...args);
     }
   },
-  invoke(channel: string, ...args: unknown[]) {
-    if (ALLOWED_CHANNELS.includes(channel as AllowedChannel)) {
+  invoke(channel: AllowedChannel, ...args: unknown[]) {
+    if (ALLOWED_CHANNELS.includes(channel)) {
       return ipcRenderer.invoke(channel, ...args);
     }
   },
