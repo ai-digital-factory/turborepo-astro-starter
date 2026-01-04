@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . && astro check",
-    "check-types": "astro check"
+    "check-types": "astro check",
+    "deploy": "pnpm run build && wrangler pages deploy"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.1",
@@ -23,6 +24,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "eslint": "^9.17.0",
     "typescript": "5.9.2",
-    "vite-tsconfig-paths": "^6.0.3"
+    "vite-tsconfig-paths": "^6.0.3",
+    "wrangler": "^3.101.0"
   }
 }
