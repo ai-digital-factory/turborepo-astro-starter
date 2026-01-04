@@ -10,15 +10,18 @@ import {
 function App() {
   useEffect(() => {
     if (window.ipcRenderer) {
-      const cleanup = window.ipcRenderer.on(
+      const controller = new AbortController();
+
+      window.ipcRenderer.on(
         "main-process-message",
         (message) => {
           console.log(message);
         },
+        { signal: controller.signal },
       );
 
       return () => {
-        cleanup?.();
+        controller.abort();
       };
     }
   }, []);

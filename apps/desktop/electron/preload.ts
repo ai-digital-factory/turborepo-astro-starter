@@ -9,6 +9,7 @@ export interface IpcRendererApi {
   on(
     channel: AllowedChannel,
     listener: (...args: unknown[]) => void,
+    options?: { signal?: AbortSignal },
   ): (() => void) | undefined;
   off(channel: AllowedChannel, listener: (...args: unknown[]) => void): void;
   send(channel: AllowedChannel, ...args: unknown[]): void;
@@ -17,7 +18,11 @@ export interface IpcRendererApi {
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", {
-  on(channel: AllowedChannel, listener: (...args: unknown[]) => void) {
+  on(
+    channel: AllowedChannel,
+    listener: (...args: unknown[]) => void,
+    options?: { signal?: AbortSignal },
+  ) {
     if (ALLOWED_CHANNELS.includes(channel)) {
       const subscription = (
         _event: Electron.IpcRendererEvent,
@@ -25,9 +30,17 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
       ) => listener(...args);
       ipcRenderer.on(channel, subscription);
 
-      return () => {
+      const cleanup = () => {
         ipcRenderer.removeListener(channel, subscription);
       };
+
+      if (options?.signal) {
+        options.signal.addEventListener("abort", () => cleanup(), {
+          once: true,
+        });
+      }
+
+      return cleanup;
     }
   },
   off(channel: AllowedChannel, listener: (...args: unknown[]) => void) {
