@@ -17,8 +17,3 @@ ReactDOM.createRoot(rootElement).render(
     <App />
   </React.StrictMode>,
 );
-
-// Use contextBridge
-window.ipcRenderer.on("main-process-message", (message) => {
-  console.log(message);
-});

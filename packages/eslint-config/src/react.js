@@ -45,6 +45,15 @@ export default [
       ...jsxA11yPlugin.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
       "react/no-unknown-property": "error",
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "Program > ExpressionStatement > CallExpression[callee.property.name='on'][callee.object.property.name='ipcRenderer']",
+          message:
+            "IPC listeners should be registered inside a useEffect hook to ensure proper cleanup and avoid memory leaks. Top-level registration causes memory leaks as listeners are never removed.",
+        },
+      ],
     },
   },
 
