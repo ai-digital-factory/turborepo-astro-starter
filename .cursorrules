@@ -1,4 +1,12 @@
-After making any code changes, always run the following commands to validate the changes:
-1. `pnpm lint` to check for linting errors.
-2. `pnpm format` to format the code.
+# Development Standards
 
+## Code Validation
+
+After making any code changes, **always** run the following commands to validate your changes:
+
+1. `pnpm lint` — Run this command at the **root** of the repository to check for linting errors (not just for individual apps or packages).
+2. `pnpm format` — Format the code according to project standards.
+
+## Import Conventions
+
+- **Absolute Imports:** Always use absolute imports with the `@/` prefix (e.g., `@/components/...`) instead of relative paths (e.g., `../../components/...`).

@@ -10,7 +10,8 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@repo/ui/*": ["./src/*"]
     }
   },
   "include": ["src"]
