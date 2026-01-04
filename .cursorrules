@@ -10,3 +10,7 @@ After making any code changes, **always** run the following commands to validate
 ## Import Conventions
 
 - **Absolute Imports:** Always use absolute imports with the `@/` prefix (e.g., `@/components/...`) instead of relative paths (e.g., `../../components/...`).
+
+## Use Abort controller
+
+- Always use the AbortController's signal for cleanup and cancellation tasks wherever applicable.
