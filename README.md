@@ -6,7 +6,9 @@ A modern monorepo starter template built with Turborepo and Astro. This project 
 
 - 🚀 **Turborepo** - High-performance monorepo build system with intelligent caching
 - ⚡ **Astro** - Modern web framework for building fast, content-focused websites
-- ⚛️ **React** - UI components with React (via `@astrojs/react` integration)
+- ⚛️ **React** - UI components with React
+- 🖥️ **Electron** - Cross-platform desktop application development
+- 📓 **Notebook Conversion** - Automated conversion of Jupyter Notebooks to styled HTML
 - 🎨 **Tailwind CSS v4** - Utility-first CSS framework for styling (latest version)
 - 🎭 **Shadcn UI** - Beautiful, accessible component library built on Radix UI and Tailwind CSS
 - 📦 **pnpm Workspace** - Efficient package management with workspace support
@@ -21,6 +23,7 @@ Before you begin, ensure you have the following installed:
 
 - **Node.js** >= 22
 - **pnpm** 9.0.0 (or compatible version)
+- **Jupyter** (for notebook conversion) - `pip install jupyter`
 
 ## Getting Started
 
@@ -40,7 +43,9 @@ Start the development server for all apps:
 pnpm dev
 ```
 
-This will start the Astro development server. The blog app will typically be available at `http://localhost:4321` (or the port specified by Astro).
+- **Blog (Astro):** `http://localhost:4321`
+- **Desktop (Electron):** Launches as a desktop app
+- **Notebooks:** Use the conversion script to view HTML output
 
 ### Building
 
@@ -69,10 +74,17 @@ The following scripts are available at the root level:
 ```
 turbo-repo-astro-starter/
 ├── apps/
-│   └── blog/          # Astro blog application
-│       ├── src/       # Source files
-│       ├── public/    # Static assets
-│       ├── eslint.config.mjs # Local ESLint config (extends shared)
+│   ├── blog/          # Astro blog application
+│   │   ├── src/       # Source files
+│   │   ├── public/    # Static assets
+│   │   └── package.json
+│   ├── desktop/       # Electron + React desktop application
+│   │   ├── electron/  # Main and preload scripts
+│   │   ├── src/       # React renderer source
+│   │   └── package.json
+│   └── notebook/      # Jupyter Notebook collection
+│       ├── src/       # .ipynb source files
+│       ├── scripts/   # Conversion script (bash)
 │       └── package.json
 ├── packages/
 │   ├── eslint-config/ # Shared ESLint configuration
@@ -91,23 +103,25 @@ turbo-repo-astro-starter/
 
 ### Apps
 
-- **blog** - An Astro-powered blog application located in `apps/blog/`
+- **blog** - An Astro-powered blog application located in `apps/blog/`.
+- **desktop** - An Electron application with React frontend located in `apps/desktop/`.
+- **notebook** - A system for converting Jupyter Notebooks to a searchable HTML collection, located in `apps/notebook/`.
 
 ### Packages
 
-- **@repo/eslint-config** - Shared ESLint configuration package located in `packages/eslint-config/`. Centralizes linting rules and dependencies for Astro, React, and TypeScript.
-- **@repo/ui** - Shared UI component library built with shadcn UI, located in `packages/ui/`. This package contains reusable React components that can be used across all apps in the monorepo.
+- **@repo/eslint-config** - Shared ESLint configuration package. Centralizes linting rules for Astro, React, and TypeScript.
+- **@repo/ui** - Shared UI component library built with shadcn UI. Reusable React components for all apps.
 
 ## Tech Stack
 
-- **[Turborepo](https://turbo.build/)** - Monorepo build system and task runner
-- **[Astro](https://astro.build/)** - Web framework for building fast, content-focused websites
-- **[React](https://react.dev/)** - UI library for building user interfaces
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework (latest version)
-- **[Shadcn UI](https://ui.shadcn.com/)** - Re-usable components built with Radix UI and Tailwind CSS
-- **[TypeScript](https://www.typescriptlang.org/)** - Typed JavaScript at scale
-- **[Prettier](https://prettier.io/)** - Opinionated code formatter
-- **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager
+- **[Turborepo](https://turbo.build/)** - Monorepo build system
+- **[Astro](https://astro.build/)** - Modern web framework
+- **[Electron](https://www.electronjs.org/)** - Desktop application framework
+- **[React](https://react.dev/)** - UI library
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS (v4)
+- **[Shadcn UI](https://ui.shadcn.com/)** - UI components
+- **[TypeScript](https://www.typescriptlang.org/)** - Static typing
+- **[Jupyter](https://jupyter.org/)** - Interactive computing
 
 ## Using shadcn UI Components
 
@@ -135,12 +149,12 @@ The project includes a shared UI package (`@repo/ui`) with shadcn UI components.
 
 - [x] Add shadcn components and use them in components
 - [x] Create a reusable ui library
-- [ ] Use common typescript dependency
-- [x] add pre commit hook to check if format is correct via husky
-- [x] create reusable eslint package
-- [ ] add cursor rule to run pmpm lint and pnpm format too after making changes
-- [ ] create reusable vite config package
-- [ ] create reusable typescript config package
+- [x] Use common typescript dependency
+- [x] Add pre-commit hook to check if format is correct via husky
+- [x] Create reusable eslint package
+- [x] Add cursor rule to run `pnpm lint` and `pnpm format` after changes
+- [ ] Create reusable vite config package (once more than 1 app starts using)
+- [ ] Create reusable typescript config package (once more than 1 app starts using)
 
 ## ESLint Configuration
 
@@ -148,7 +162,7 @@ The monorepo uses a shared ESLint configuration to ensure code quality and consi
 
 ### Usage in Apps
 
-To use the shared configuration in a new Astro app:
+To use the shared configuration in a new app:
 
 1. Add the shared package to your `devDependencies`:
 
@@ -168,7 +182,6 @@ To use the shared configuration in a new Astro app:
 
 - [Turborepo Documentation](https://turbo.build/repo/docs)
 - [Astro Documentation](https://docs.astro.build/)
-- [Astro React Integration](https://docs.astro.build/en/guides/integrations-guide/react/)
-- [Astro Tailwind Integration](https://docs.astro.build/en/guides/integrations-guide/tailwind/)
+- [Electron Documentation](https://www.electronjs.org/docs/latest)
 - [shadcn UI Documentation](https://ui.shadcn.com/)
 - [pnpm Documentation](https://pnpm.io/motivation)

@@ -1,0 +1,11 @@
+{
+  "name": "notebook",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "bash scripts/convert-notebook-to-html.sh",
+    "deploy": "pnpm run build && wrangler pages deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
