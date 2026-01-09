@@ -1,7 +1,7 @@
 services:
   backend:
     # Jan 29 2026
-    image: ghcr.io/get-convex/convex-backend:c0842a7e3f49ca7fac4ad161141c5587346e226a
+    image: ghcr.io/get-convex/convex-backend:aef0568827a4d1b9a3a6a8c45653567af54b59b9
     stop_grace_period: 10s
     stop_signal: SIGINT
     ports:
@@ -16,7 +16,7 @@ services:
       start_period: 10s
 
   dashboard:
-    image: ghcr.io/get-convex/convex-dashboard:c0842a7e3f49ca7fac4ad161141c5587346e226a
+    image: ghcr.io/get-convex/convex-dashboard:aef0568827a4d1b9a3a6a8c45653567af54b59b9
     stop_grace_period: 10s
     stop_signal: SIGINT
     ports:
