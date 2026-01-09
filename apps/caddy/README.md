@@ -32,3 +32,14 @@ docker compose up -d
 The following host directories are used for persistent storage:
 - `/var/lib/turbo-astro-starter/caddy-data` (Certificates & data)
 - `/var/lib/turbo-astro-starter/caddy-config` (Configuration)
+
+## ☁️ Cloudflare DNS Configuration
+
+To route traffic correctly, you must configure the following **A records** in your Cloudflare dashboard under **Websites > [Your Domain] > DNS > Records**:
+
+| Type | Name | Content | Proxy Status | TTL |
+| :--- | :--- | :--- | :--- | :--- |
+| `A` | `convex-backend` | `122.166.57.113` | DNS only | Auto |
+| `A` | `convex-dashboard` | `122.166.57.113` | DNS only | Auto |
+
+> **Note:** Set the Proxy Status to **DNS only** (Grey Cloud) to allow Caddy to manage SSL certificates automatically.
