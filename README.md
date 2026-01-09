@@ -72,7 +72,7 @@ The following scripts are available at the root level:
 ## Project Structure
 
 ```
-turbo-repo-astro-starter/
+turborepo-astro-starter/
 ├── apps/
 │   ├── blog/          # Astro blog application
 │   │   ├── src/       # Source files

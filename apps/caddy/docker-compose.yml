@@ -1,0 +1,17 @@
+services:
+  caddy:
+    image: caddy:2.11
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - /var/lib/turborepo-astro-starter/caddy-data:/data
+      - /var/lib/turborepo-astro-starter/caddy-config:/config
+    networks:
+      - turborepo-astro-starter-network
+    restart: unless-stopped
+
+networks:
+  turborepo-astro-starter-network:
+    external: true
