@@ -8,7 +8,7 @@ services:
       - "${PORT:-3210}:3210"
       - "${SITE_PROXY_PORT:-3211}:3211"
     volumes:
-      - /var/lib/turbo-repo-astro-starter/convex-data:/convex/data
+      - /var/lib/turborepo-astro-starter/convex-data:/convex/data
 
     healthcheck:
       test: curl -f http://localhost:3210/version
@@ -16,7 +16,7 @@ services:
       start_period: 10s
 
     networks:
-      - turbo-astro-starter-network
+      - turborepo-astro-starter-network
 
   dashboard:
     image: ghcr.io/get-convex/convex-dashboard:aef0568827a4d1b9a3a6a8c45653567af54b59b9
@@ -28,8 +28,8 @@ services:
       backend:
         condition: service_healthy
     networks:
-      - turbo-astro-starter-network
+      - turborepo-astro-starter-network
 
 networks:
-  turbo-astro-starter-network:
+  turborepo-astro-starter-network:
     external: true

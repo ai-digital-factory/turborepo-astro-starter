@@ -7,7 +7,7 @@ This folder contains the Caddy configuration used to route traffic to the Convex
 Before starting the Caddy service, you **must** create the external Docker network used by all services in this project:
 
 ```bash
-docker network create turbo-astro-starter-network
+docker network create turborepo-astro-starter-network
 ```
 
 ## 🏗️ Configuration
