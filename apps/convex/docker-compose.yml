@@ -15,6 +15,9 @@ services:
       interval: 5s
       start_period: 10s
 
+    networks:
+      - turbo-astro-starter-network
+
   dashboard:
     image: ghcr.io/get-convex/convex-dashboard:aef0568827a4d1b9a3a6a8c45653567af54b59b9
     stop_grace_period: 10s
@@ -24,3 +27,9 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    networks:
+      - turbo-astro-starter-network
+
+networks:
+  turbo-astro-starter-network:
+    external: true
