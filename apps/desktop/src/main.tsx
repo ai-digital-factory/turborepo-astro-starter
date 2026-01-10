@@ -2,9 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import App from "@/App";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import "@/styles/globals.css";
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+const convexUrl = import.meta.env.VITE_CONVEX_URL;
+
+if (!convexUrl) {
+  const errorMessage =
+    "VITE_CONVEX_URL is not defined or empty. Please check your environment variables (e.g., .env file) and ensure it's set correctly for Convex.";
+  console.error(errorMessage);
+  throw new Error(errorMessage);
+}
+
+const convex = new ConvexReactClient(convexUrl);
 
 const rootElement = document.getElementById("root");
 
@@ -18,7 +28,9 @@ if (!rootElement) {
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <ConvexProvider client={convex}>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </ConvexProvider>
   </React.StrictMode>,
 );

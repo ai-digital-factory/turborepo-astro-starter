@@ -53,7 +53,7 @@ function App() {
             </CardHeader>
           </Card>
         ) : (
-          events.map((event) => (
+          events.map((event: { _id: string; name: string }) => (
             <Card key={event._id}>
               <CardHeader>
                 <CardTitle className="text-lg">{event.name}</CardTitle>
