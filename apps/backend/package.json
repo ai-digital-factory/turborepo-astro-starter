@@ -9,7 +9,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "convex": "^1.19.2"
+    "convex": "^1.26.2"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

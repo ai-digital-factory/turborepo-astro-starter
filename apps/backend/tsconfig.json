@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./convex/*"]
+      "@/*": ["./convex/*"]
     }
   },
   "include": ["convex/**/*"],

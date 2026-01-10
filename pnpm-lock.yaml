@@ -30,7 +30,7 @@ importers:
   apps/backend:
     dependencies:
       convex:
-        specifier: ^1.19.2
+        specifier: ^1.26.2
         version: 1.31.3(react@18.3.1)
     devDependencies:
       '@repo/eslint-config':
