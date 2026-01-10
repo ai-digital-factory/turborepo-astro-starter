@@ -27,6 +27,22 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
 
+  apps/backend:
+    dependencies:
+      convex:
+        specifier: ^1.26.2
+        version: 1.31.3(react@18.3.1)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      eslint:
+        specifier: ^9.17.0
+        version: 9.39.2(jiti@2.6.1)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
   apps/blog:
     dependencies:
       '@astrojs/react':
@@ -116,7 +132,11 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3(typescript@5.9.2)(vite@6.4.1(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
 
-  apps/notebook: {}
+  apps/notebook:
+    devDependencies:
+      wrangler:
+        specifier: ^4.54.0
+        version: 4.54.0
 
   packages/eslint-config:
     dependencies:
@@ -1922,6 +1942,22 @@ packages:
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
+
+  convex@1.31.3:
+    resolution: {integrity: sha512-SkpLjhFFnml2xKB4vNOaZ+MtqyhVmDdk5AIF2m8rW8Z7nZsMtuO1Tpn2BnDHCysZkZPJj9xopnsF5RtAINQ0Eg==}
+    engines: {node: '>=18.0.0', npm: '>=7.0.0'}
+    hasBin: true
+    peerDependencies:
+      '@auth0/auth0-react': ^2.0.1
+      '@clerk/clerk-react': ^4.12.8 || ^5.0.0
+      react: ^18.0.0 || ^19.0.0-0 || ^19.0.0
+    peerDependenciesMeta:
+      '@auth0/auth0-react':
+        optional: true
+      '@clerk/clerk-react':
+        optional: true
+      react:
+        optional: true
 
   cookie-es@1.2.2:
     resolution: {integrity: sha512-+W7VmiVINB+ywl1HGXJXmrqkOhpKrIiVZV6tQuV54ZyQC7MMuBt81Vc336GMLoHBq5hV/F9eXgt5Mnx0Rha5Fg==}
@@ -5981,6 +6017,13 @@ snapshots:
   concat-map@0.0.1: {}
 
   convert-source-map@2.0.0: {}
+
+  convex@1.31.3(react@18.3.1):
+    dependencies:
+      esbuild: 0.27.0
+      prettier: 3.7.4
+    optionalDependencies:
+      react: 18.3.1
 
   cookie-es@1.2.2: {}
 

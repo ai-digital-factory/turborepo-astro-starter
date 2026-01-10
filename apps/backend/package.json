@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "convex dev",
+    "lint": "eslint . && pnpm run check-types",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "convex": "^1.26.2"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "eslint": "^9.17.0",
+    "typescript": "5.9.2"
+  }
+}
