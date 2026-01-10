@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "convex dev",
+    "codegen": "convex codegen",
     "lint": "eslint . && pnpm run check-types",
     "check-types": "tsc --noEmit"
   },
