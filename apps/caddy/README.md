@@ -14,10 +14,10 @@ docker network create turborepo-astro-starter-network
 
 Caddy is configured to act as a reverse proxy for the following domains:
 
-| Domain | Backend Service |
-| :--- | :--- |
+| Domain                                    | Backend Service             |
+| :---------------------------------------- | :-------------------------- |
 | `starter-convex-dashboard.reelfreakz.com` | Proxies to `dashboard:6791` |
-| `starter-convex-backend.reelfreakz.com` | Proxies to `backend:3210` |
+| `starter-convex-backend.reelfreakz.com`   | Proxies to `backend:3210`   |
 
 ## 🚀 Running Caddy
 
@@ -30,6 +30,7 @@ docker compose up -d
 ## 📂 Volume Mapping
 
 The following host directories are used for persistent storage:
+
 - `/var/lib/turbo-astro-starter/caddy-data` (Certificates & data)
 - `/var/lib/turbo-astro-starter/caddy-config` (Configuration)
 
@@ -37,9 +38,9 @@ The following host directories are used for persistent storage:
 
 To route traffic correctly, you must configure the following **A records** in your Cloudflare dashboard under **Websites > [Your Domain] > DNS > Records**:
 
-| Type | Name | Content | Proxy Status | TTL |
-| :--- | :--- | :--- | :--- | :--- |
-| `A` | `starter-convex-backend` | `122.166.57.113` | DNS only | Auto |
-| `A` | `starter-convex-dashboard` | `122.166.57.113` | DNS only | Auto |
+| Type | Name                       | Content          | Proxy Status | TTL  |
+| :--- | :------------------------- | :--------------- | :----------- | :--- |
+| `A`  | `starter-convex-backend`   | `122.166.57.113` | DNS only     | Auto |
+| `A`  | `starter-convex-dashboard` | `122.166.57.113` | DNS only     | Auto |
 
 > **Note:** Set the Proxy Status to **DNS only** (Grey Cloud) to allow Caddy to manage SSL certificates automatically.

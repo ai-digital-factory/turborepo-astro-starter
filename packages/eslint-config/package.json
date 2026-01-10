@@ -13,6 +13,10 @@
     "./react.js": {
       "types": "./src/react.d.ts",
       "import": "./src/react.js"
+    },
+    "./base.js": {
+      "types": "./src/base.d.ts",
+      "import": "./src/base.js"
     }
   },
   "files": [

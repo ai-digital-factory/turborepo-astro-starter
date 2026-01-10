@@ -11,7 +11,7 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint . && pnpm run check-types"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

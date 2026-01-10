@@ -1,19 +1,11 @@
-import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
-import eslintConfigPrettier from "eslint-config-prettier";
-import globals from "globals";
+import baseConfig from "./base.js";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  // Base configuration
-  {
-    ignores: ["dist", "dist-electron", "node_modules", ".turbo"],
-  },
-
-  // TypeScript configuration
-  ...tseslint.configs.recommended,
+  ...baseConfig,
 
   // React configuration for JS/TS/TSX files
   {
@@ -28,10 +20,6 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
       },
     },
     settings: {
@@ -56,7 +44,4 @@ export default [
       ],
     },
   },
-
-  // Prettier compatibility (should always be last)
-  eslintConfigPrettier,
 ];

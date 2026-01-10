@@ -1,8 +1,8 @@
 node_modules
 .turbo
 .astro
-dist
+dist*
 .pnpm-store
-dist-electron
 *.tsbuildinfo
-.env
+.env*
+_generated*

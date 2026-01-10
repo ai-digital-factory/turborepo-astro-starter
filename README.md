@@ -86,6 +86,10 @@ turborepo-astro-starter/
 │       ├── src/       # .ipynb source files
 │       ├── scripts/   # Conversion script (bash)
 │       └── package.json
+├── apps/backend/      # Convex backend configuration and functions
+│   ├── convex/        # Convex functions (schema, queries, mutations)
+│   ├── docker-compose.yml
+│   └── package.json
 ├── packages/
 │   ├── eslint-config/ # Shared ESLint configuration
 │   │   ├── astro.js   # Astro + React + TS flat config
@@ -106,6 +110,7 @@ turborepo-astro-starter/
 - **blog** - An Astro-powered blog application located in `apps/blog/`.
 - **desktop** - An Electron application with React frontend located in `apps/desktop/`.
 - **notebook** - A system for converting Jupyter Notebooks to a searchable HTML collection, located in `apps/notebook/`.
+- **convex** - Self-hosted Convex backend and database functions, located in `apps/backend/`.
 
 ### Packages
 
@@ -155,6 +160,7 @@ The project includes a shared UI package (`@repo/ui`) with shadcn UI components.
 - [x] Add cursor rule to run `pnpm lint` and `pnpm format` after changes
 - [ ] Create reusable vite config package (once more than 1 app starts using)
 - [ ] Create reusable typescript config package (once more than 1 app starts using)
+- [x] add sample query and mutation to convex app
 
 ## ESLint Configuration
 
