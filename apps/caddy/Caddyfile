@@ -1,7 +1,7 @@
 starter-convex-dashboard.reelfreakz.com {
-    reverse_proxy dashboard:6791
+    reverse_proxy starter-dashboard:6791
 }
 
 starter-convex-backend.reelfreakz.com {
-    reverse_proxy backend:3210
+    reverse_proxy starter-backend:3210
 }

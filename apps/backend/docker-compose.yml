@@ -1,5 +1,5 @@
 services:
-  backend:
+  starter-backend:
     # Jan 29 2026
     image: ghcr.io/get-convex/convex-backend:aef0568827a4d1b9a3a6a8c45653567af54b59b9
     stop_grace_period: 10s
@@ -17,18 +17,20 @@ services:
 
     networks:
       - turborepo-astro-starter-network
+    restart: unless-stopped
 
-  dashboard:
+  starter-dashboard:
     image: ghcr.io/get-convex/convex-dashboard:aef0568827a4d1b9a3a6a8c45653567af54b59b9
     stop_grace_period: 10s
     stop_signal: SIGINT
     ports:
       - "${DASHBOARD_PORT:-6791}:6791"
     depends_on:
-      backend:
+      starter-backend:
         condition: service_healthy
     networks:
       - turborepo-astro-starter-network
+    restart: unless-stopped
 
 networks:
   turborepo-astro-starter-network:
