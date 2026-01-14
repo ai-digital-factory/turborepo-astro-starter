@@ -8,6 +8,7 @@ A modern monorepo starter template built with Turborepo and Astro. This project 
 - ⚡ **Astro** - Modern web framework for building fast, content-focused websites
 - ⚛️ **React** - UI components with React
 - 🖥️ **Electron** - Cross-platform desktop application development
+- ⚙️ **Worker** - Node.js worker for CPU-intensive tasks (e.g., video processing)
 - 📓 **Notebook Conversion** - Automated conversion of Jupyter Notebooks to styled HTML
 - 🎨 **Tailwind CSS v4** - Utility-first CSS framework for styling (latest version)
 - 🎭 **Shadcn UI** - Beautiful, accessible component library built on Radix UI and Tailwind CSS
@@ -90,6 +91,11 @@ turborepo-astro-starter/
 │       ├── src/       # .ipynb source files
 │       ├── scripts/   # Conversion script (bash)
 │       └── package.json
+│   ├── worker/        # Node.js worker for long-running tasks
+│   │   ├── src/       # Source files
+│   │   ├── Dockerfile
+│   │   ├── docker-compose.yml
+│   │   └── package.json
 ├── apps/backend/      # Convex backend configuration and functions
 │   ├── convex/        # Convex functions (schema, queries, mutations)
 │   ├── docker-compose.yml
@@ -114,6 +120,7 @@ turborepo-astro-starter/
 - **blog** - An Astro-powered blog application located in `apps/blog/`.
 - **desktop** - An Electron application with React frontend located in `apps/desktop/`.
 - **notebook** - A system for converting Jupyter Notebooks to a searchable HTML collection, located in `apps/notebook/`.
+- **worker** - A Node.js worker service for CPU-intensive tasks, located in `apps/worker/`.
 - **convex** - Self-hosted Convex backend and database functions, located in `apps/backend/`.
 
 ### Packages

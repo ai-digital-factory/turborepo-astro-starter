@@ -1,0 +1,14 @@
+services:
+  starter-worker:
+    build:
+      context: ../../
+      dockerfile: apps/worker/Dockerfile
+    ports:
+      - "${WORKER_PORT:-3001}:3001"
+    networks:
+      - turborepo-astro-starter-network
+    restart: unless-stopped
+
+networks:
+  turborepo-astro-starter-network:
+    external: true

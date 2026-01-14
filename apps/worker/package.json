@@ -1,0 +1,24 @@
+{
+  "name": "worker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint . && pnpm run check-types",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.7.2",
+    "@hono/node-server": "^1.13.8"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@types/node": "^22.10.7",
+    "eslint": "^9.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "5.9.2"
+  }
+}
