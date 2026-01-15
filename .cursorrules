@@ -19,3 +19,7 @@ After making any code changes, **always** run the following commands to validate
 ## Dont use npx pnpm@9.0.0
 
 - use pnpm which is already installed locally 
+
+## Run pnpm install
+
+- whenever you change any dependency in package.json , make sure to run pnpm install post that

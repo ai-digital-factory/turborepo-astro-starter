@@ -16,4 +16,7 @@ docker compose -f "$REPO_ROOT/apps/backend/docker-compose.yml" up -d
 echo "Starting Caddy services..."
 docker compose -f "$REPO_ROOT/apps/caddy/docker-compose.yml" up -d
 
+echo "Building and starting Worker service..."
+docker compose -f "$REPO_ROOT/apps/worker/docker-compose.yml" up -d --build
+
 echo "All services started successfully!"

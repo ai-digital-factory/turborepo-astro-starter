@@ -5,3 +5,7 @@ starter-convex-dashboard.reelfreakz.com {
 starter-convex-backend.reelfreakz.com {
     reverse_proxy starter-backend:3210
 }
+
+starter-worker.reelfreakz.com {
+    reverse_proxy starter-worker:3001
+}
