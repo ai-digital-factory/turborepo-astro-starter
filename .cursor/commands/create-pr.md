@@ -10,20 +10,26 @@ Follow these steps carefully:
 - Check if GitHub CLI (`gh`) is installed by running `gh --version`. If not, stop and inform the user.
 - Check authentication status with `gh auth status`. If not authenticated, prompt the user to run `gh auth login`.
 
-### 2. Generate Commit Message
+### 2. Get Issue Number
+
+- **REQUIRED:** Prompt the user for the GitHub issue number (format: just the number, e.g., "123").
+- Validate that a non-empty issue number is provided. If not provided, stop and inform the user that an issue number is required.
+- Store the issue number for use in the PR description.
+
+### 3. Generate Commit Message
 
 - Run `git diff --cached` (if changes are staged) or `git diff` to analyze the changes.
 - Automatically generate a descriptive commit message based on the modifications.
 - Use the **Conventional Commits** format (e.g., `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`).
 - Keep the summary line under 50 characters and provide a body if the changes are complex.
 
-### 3. Commit & Push
+### 4. Commit & Push
 
 - If changes are not staged, run `git add .`.
 - Commit the changes using the generated message: `git commit -m "<message>"`.
 - Push the current branch to origin. If it's a new branch, use `git push -u origin <branch-name>`.
 
-### 4. Create Pull Request
+### 5. Create Pull Request
 
 - Detect the default branch of the repository (usually `main` or `master`) using `gh repo view --json defaultBranchRef --template '{{.defaultBranchRef.name}}'`.
 - Generate a PR title from the commit summary.
@@ -31,15 +37,19 @@ Follow these steps carefully:
   - **Summary**: A brief overview of the changes.
   - **Key Changes**: A bulleted list of significant modifications.
   - **Testing**: A note on how the changes were tested (or if they need testing).
+  - **Issue Reference**: Add "Closes #<issue-number>" at the end of the PR description (use the issue number collected in step 2).
 - Check if a PR already exists for this branch: `gh pr list --head <branch-name> --json url --jq '.[0].url'`.
-- If a PR exists, inform the user and provide the link.
+- If a PR exists, inform the user and provide the link as a clickable markdown hyperlink: `[PR #<number>](<PR_URL>)`.
 - If no PR exists, create one:
   ```bash
   gh pr create --title "<title>" --body "<description>" --base <default-branch>
   ```
-- Output the URL of the created PR.
+- Capture the PR URL from the output.
+- Display the PR URL as a clickable markdown hyperlink: `[<PR Title>](<PR_URL>)`.
+- Also display the raw URL for reference.
 
-### 5. Error Handling
+### 6. Error Handling
 
 - If any command fails, stop and explain the error to the user.
 - If there are merge conflicts when pushing, inform the user they need to resolve them manually.
+- If the issue number is not provided or invalid, stop and inform the user that a valid issue number is required.
