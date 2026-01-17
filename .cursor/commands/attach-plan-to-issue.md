@@ -4,7 +4,7 @@ Attach a plan from an MD file to an existing GitHub issue by appending the plan 
 
 - Implement any fixes or solutions
 - Make any code changes
-- Modify any files in the repository (except reading the plan file)
+- Modify any files in the repository (except creating/deleting temporary plan files in `.cursor/plans/` directory)
 - Perform any actions beyond updating the issue
 
 After updating the issue, STOP immediately. Do not proceed with any implementation or code modifications.
@@ -23,30 +23,33 @@ Follow these steps carefully:
 - If no issue number is provided, stop and inform the user that an issue number is required.
 - Validate the issue exists using `gh issue view <number>`. If the issue doesn't exist, stop and inform the user with a clear error message.
 
-### 3. Find Plan Files
+### 3. Save Plan Content
 
-- Search for `.md` files in `.cursor/plans/` directory first. If the directory doesn't exist, create it but don't fail.
-- If no plan files found in `.cursor/plans/`, fallback to searching the root directory for plan-like files matching patterns: `*plan*.md`, `plan.md`, or any `.md` file in the root.
-- Sort all found plan files by modification time (most recent first) using `ls -t` or similar.
-- If no plan files are found, stop and inform the user that no plan files were found.
-- If multiple plan files are found:
-  - List them with their modification times
-  - Use the most recent one automatically, or prompt the user to select one if preferred
-- Store the selected plan file path for reading.
+- **REQUIRE** plan content to be provided (from `mcp_create_plan` tool output or user input).
+- Create `.cursor/plans/` directory if it doesn't exist using `mkdir -p .cursor/plans/`.
+- Save the plan content to a file named `.cursor/plans/plan-<issue-number>.md` (e.g., `plan-123.md`).
+- Store the plan file path for later cleanup.
+- If the file cannot be written, stop and inform the user with an error message.
 
-### 4. Read Plan Content
+### 4. Find Plan Files
+
+- Use the plan file path from step 3 (`.cursor/plans/plan-<issue-number>.md`).
+- Verify the file exists. If it doesn't exist, stop and inform the user with an error message.
+- Store the plan file path for reading and later cleanup.
+
+### 5. Read Plan Content
 
 - Read the content of the selected plan file.
 - If the file cannot be read or is empty, stop and inform the user with an error message.
 - Store the plan content for later use.
 
-### 5. Fetch Current Issue Body
+### 6. Fetch Current Issue Body
 
 - Fetch the current issue body using: `gh issue view <number> --json body --jq '.body'`
 - If the command fails, stop and explain the error to the user.
 - Store the current body content. If the body is null or empty, treat it as an empty string.
 
-### 6. Combine Content
+### 7. Combine Content
 
 - Append the plan content to the existing issue body with a clear separator.
 - Use the following format:
@@ -64,7 +67,7 @@ Follow these steps carefully:
 - If the existing body is empty, start directly with `## Plan\n\n<plan-content>`.
 - Ensure proper markdown formatting is preserved.
 
-### 7. Update Issue
+### 8. Update Issue
 
 - Create a temporary file to store the combined content if the body is too large for command line arguments.
 - Update the issue using one of these methods:
@@ -73,18 +76,28 @@ Follow these steps carefully:
 - Properly escape special characters (quotes, newlines, etc.) when passing to CLI.
 - If using a temp file, clean it up after the update.
 - Capture the output URL of the updated issue.
+- Store a flag indicating successful update for cleanup step.
 
-### 8. Output
+### 9. Cleanup Plan File
+
+- After successful issue update, delete the plan file from `.cursor/plans/` using `rm .cursor/plans/plan-<issue-number>.md`.
+- If the deletion fails, log a warning but don't fail the entire operation (the plan was already attached to the issue).
+- Only attempt deletion if the issue update was successful.
+
+### 10. Output
 
 - Display the URL of the updated issue to the user.
 - Confirm successful update with a brief message indicating the plan was attached.
 - **STOP HERE** - Do not proceed with any code changes or implementation. The task is complete once the issue is updated.
 
-### 9. Error Handling
+### 11. Error Handling
 
 - If any command fails, stop and explain the error to the user.
 - If no issue number is provided, inform the user that an issue number is required.
 - If the issue doesn't exist, provide a clear error message with the issue number.
-- If no plan files are found, inform the user where the command searched and suggest creating a plan file.
-- If GitHub CLI authentication fails, provide clear instructions on how to authenticate.
+- If plan content is not provided, inform the user that plan content is required.
+- If the plan file cannot be written to `.cursor/plans/`, inform the user with the file path and error details.
 - If the plan file cannot be read, inform the user with the file path and error details.
+- If GitHub CLI authentication fails, provide clear instructions on how to authenticate.
+- If the plan file deletion fails during cleanup, log a warning but don't fail the operation (the plan was already attached to the issue).
+- Ensure cleanup happens even if some operations fail (attempt to delete the plan file even if there were errors, as long as the issue was updated).
