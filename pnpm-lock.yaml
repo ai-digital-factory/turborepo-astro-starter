@@ -146,6 +146,9 @@ importers:
       '@hono/node-server':
         specifier: ^1.13.8
         version: 1.19.9(hono@4.11.4)
+      '@repo/math':
+        specifier: workspace:*
+        version: link:../../packages/math
       hono:
         specifier: ^4.7.2
         version: 4.11.4
@@ -195,6 +198,18 @@ importers:
       typescript-eslint:
         specifier: ^8.42.0
         version: 8.51.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
+
+  packages/math:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      eslint:
+        specifier: ^9.17.0
+        version: 9.39.2(jiti@2.6.1)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
 
   packages/ui:
     dependencies:
