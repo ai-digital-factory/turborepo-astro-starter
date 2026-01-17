@@ -31,13 +31,34 @@ Follow these steps carefully:
 - Use the **Conventional Commits** format (e.g., `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`).
 - Keep the summary line under 50 characters and provide a body if the changes are complex.
 
-### 5. Commit & Push
+### 5. Update README Files with Changelog
 
-- If changes are not staged, run `git add .`.
+- After generating the commit message (Step 4), analyze the git diff to identify which README files need updating:
+  - Check if changes affect root-level files → update `README.md`
+  - Check if changes affect files in `apps/<app-name>/` → update `apps/<app-name>/README.md`
+  - Check if changes affect files in `packages/<package-name>/` → update `packages/<package-name>/README.md` (if it exists)
+- For each README that needs updating:
+  - Read the current README file
+  - Analyze the git diff to extract meaningful changes (features added, bugs fixed, dependencies updated, etc.)
+  - Generate a changelog entry in **Conventional Commits** format with:
+    - Date (current date in YYYY-MM-DD format)
+    - Type prefix (feat, fix, chore, refactor, docs, etc.) matching the commit message
+    - Brief description of the change
+  - Add the changelog entry to a "## Changelog" section:
+    - If the section doesn't exist, create it at the end of the README (before "## Learn More" if present, or at the end)
+    - If it exists, prepend the new entry at the top of the changelog section
+    - Format: `### YYYY-MM-DD` followed by bullet points with `- **Type**: Description`
+- Stage the updated README files: `git add <path-to-readme>`
+- If no README files exist for affected directories, skip silently
+
+### 6. Commit & Push
+
+- Note that README files are already staged from Step 5.
+- If changes are not staged, run `git add .` as a fallback for any other unstaged changes.
 - Commit the changes using the generated message: `git commit -m "<message>"`.
 - Push the new branch to origin with upstream tracking: `git push -u origin fix/issue-<number>`.
 
-### 6. Create Pull Request
+### 7. Create Pull Request
 
 - Generate a PR title from the commit summary.
 - Generate a detailed PR description including:
@@ -56,7 +77,7 @@ Follow these steps carefully:
 - Display the PR URL as a clickable markdown hyperlink: `[<PR Title>](<PR_URL>)`.
 - Also display the raw URL for reference.
 
-### 7. Error Handling
+### 8. Error Handling
 
 - If any command fails, stop and explain the error to the user.
 - If fetching the default branch fails, stop and inform the user to check their network connection and repository access.
@@ -64,3 +85,7 @@ Follow these steps carefully:
 - If creating or checking out the new branch fails, stop and explain the error to the user.
 - If there are merge conflicts when pushing, inform the user they need to resolve them manually.
 - If the issue number is not provided or invalid, stop and inform the user that a valid issue number is required.
+- For README update operations (Step 5):
+  - If reading a README file fails, log a warning but continue (don't stop the process)
+  - If writing a README file fails, stop and inform the user
+  - If the README file is read-only or has permission issues, inform the user
