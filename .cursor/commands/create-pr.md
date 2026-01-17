@@ -77,7 +77,15 @@ Follow these steps carefully:
 - Display the PR URL as a clickable markdown hyperlink: `[<PR Title>](<PR_URL>)`.
 - Also display the raw URL for reference.
 
-### 8. Error Handling
+### 8. Checkout Main & Fetch Latest
+
+- After successfully creating the PR (Step 7), checkout to the default branch detected in Step 3: `git checkout <default-branch>`.
+- Fetch the latest changes from origin: `git fetch origin <default-branch>` (this updates remote-tracking refs).
+- Fast-forward the local branch to match the remote: `git merge --ff-only origin/<default-branch>` (this actually moves the local branch to the remote tip).
+- This ensures the local main branch is up-to-date after PR creation.
+- Handle errors gracefully (e.g., if checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process).
+
+### 9. Error Handling
 
 - If any command fails, stop and explain the error to the user.
 - If fetching the default branch fails, stop and inform the user to check their network connection and repository access.
@@ -89,3 +97,8 @@ Follow these steps carefully:
   - If reading a README file fails, log a warning but continue (don't stop the process)
   - If writing a README file fails, stop and inform the user
   - If the README file is read-only or has permission issues, inform the user
+- For checkout and fetch operations (Step 8):
+  - If checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process (the PR was already created successfully)
+  - If checkout fails for other reasons, inform the user but don't stop the process (the PR was already created successfully)
+  - If fetch fails, inform the user but don't stop the process (the PR was already created successfully)
+  - If fast-forward merge fails (e.g., local branch has diverged or has uncommitted changes), inform the user but don't stop the process (the PR was already created successfully)
