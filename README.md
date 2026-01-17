@@ -199,6 +199,7 @@ To use the shared configuration in a new app:
 
 ### 2026-01-17
 
+- **feat**: Add Dockerfile validation rule for cursor to build and validate Docker images when Dockerfile changes are made
 - **fix**: Add close property to VS Code tasks to automatically close terminals after completion
 - **perf**: Optimized worker Docker build with turbo prune for improved caching and faster rebuilds
 - **feat**: Added duration display to start-worker.sh script to track container startup time
