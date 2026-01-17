@@ -80,7 +80,8 @@ Follow these steps carefully:
 ### 8. Checkout Main & Fetch Latest
 
 - After successfully creating the PR (Step 7), checkout to the default branch detected in Step 3: `git checkout <default-branch>`.
-- Fetch the latest changes from origin: `git fetch origin <default-branch>`.
+- Fetch the latest changes from origin: `git fetch origin <default-branch>` (this updates remote-tracking refs).
+- Fast-forward the local branch to match the remote: `git merge --ff-only origin/<default-branch>` (this actually moves the local branch to the remote tip).
 - This ensures the local main branch is up-to-date after PR creation.
 - Handle errors gracefully (e.g., if checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process).
 
@@ -100,3 +101,4 @@ Follow these steps carefully:
   - If checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process (the PR was already created successfully)
   - If checkout fails for other reasons, inform the user but don't stop the process (the PR was already created successfully)
   - If fetch fails, inform the user but don't stop the process (the PR was already created successfully)
+  - If fast-forward merge fails (e.g., local branch has diverged or has uncommitted changes), inform the user but don't stop the process (the PR was already created successfully)
