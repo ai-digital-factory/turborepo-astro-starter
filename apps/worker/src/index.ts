@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
+import { add } from "@repo/math";
 
 const app = new Hono();
 
@@ -11,7 +12,12 @@ const executeLongTask = async () => {
   console.log("Starting long task...");
   await new Promise((resolve) => setTimeout(resolve, 4000));
   console.log("Long task completed.");
-  return { status: "success", message: "Task completed after 4 seconds" };
+  const result = add(100, 200);
+  return {
+    status: "success",
+    message: "Task completed after 4 seconds",
+    result,
+  };
 };
 
 app.get("/", (c) => {
