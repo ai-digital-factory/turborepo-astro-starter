@@ -59,3 +59,9 @@ CONVEX_URL="https://starter-convex-backend.reelfreakz.com"
 
 > **Note:** Replace `convex-self-hosted|xxxx` with your actual admin key.  
 > Always enclose values in double quotes to avoid parsing errors.
+
+## Changelog
+
+### 2026-01-17
+
+- **chore**: Removed port bindings from docker-compose.yml for starter-backend and starter-dashboard services

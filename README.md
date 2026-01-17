@@ -199,6 +199,7 @@ To use the shared configuration in a new app:
 
 ### 2026-01-17
 
+- **chore**: Removed port bindings from docker-compose.yml files for all services (backend, dashboard, worker)
 - **feat**: Added README changelog update step to create-pr command
 
 ## Learn More
