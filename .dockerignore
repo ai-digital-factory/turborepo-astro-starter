@@ -1,97 +1,16 @@
-# Git
 .git
-.gitignore
-
-# Dependencies
 node_modules
 **/node_modules
-
-# Build outputs
 dist
 **/dist
 .next
 **/.next
-out
-**/out
-
-# Documentation
-*.md
-README.md
-**/README.md
-
-# Environment files
 .env
 .env.*
 !.env.example
-
-# IDE and editor configs
 .vscode
 .cursor
-.cursorrules
 .idea
-*.swp
-*.swo
-*~
-
-# CI/CD
-.github
-.gitlab-ci.yml
-.travis.yml
-.circleci
-
-# Husky (git hooks)
+*.md
 .husky
-
-# Config files not needed for build
-.npmrc
-.nvmrc
-.prettierrc
-
-# Scripts not needed for Docker build
-scripts
-
-# Docker files from other apps (not needed for worker build)
-apps/*/docker-compose.yml
-apps/*/Dockerfile
-!apps/worker/Dockerfile
-apps/*/wrangler.toml
-
-# Exclude other apps' source directories (package.json files are kept for workspace resolution)
-apps/backend/src
-apps/backend/convex
-apps/backend/eslint.config.mjs
-apps/backend/tsconfig.json
-apps/blog/src
-apps/blog/public
-apps/blog/astro.config.mjs
-apps/blog/eslint.config.mjs
-apps/blog/tsconfig.json
-apps/blog/content.config.ts
-apps/blog/env.d.ts
-apps/caddy
-apps/desktop/src
-apps/desktop/electron
-apps/desktop/index.html
-apps/desktop/vite.config.ts
-apps/desktop/eslint.config.mjs
-apps/desktop/tsconfig.json
-apps/desktop/tsconfig.node.json
-apps/notebook/src
-apps/notebook/scripts
-apps/notebook/wrangler.toml
-
-# Exclude other packages' source (package.json files are kept for workspace resolution)
-packages/ui/src
-packages/ui/components.json
-packages/ui/eslint.config.mjs
-packages/ui/tsconfig.json
-
-# Temporary files
-*.log
-*.tmp
-.cache
-**/.cache
-
-# OS files
-.DS_Store
-Thumbs.db
+.github
