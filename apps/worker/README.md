@@ -22,3 +22,9 @@ If everything is working, you'll receive a response from the worker service.
 - For more endpoints or advanced usage, check the service's API documentation.
 
 Enjoy automating with our Worker! 😊
+
+## Changelog
+
+### 2026-01-17
+
+- **chore**: Removed port bindings from docker-compose.yml for starter-worker service
