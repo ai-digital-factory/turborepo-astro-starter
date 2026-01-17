@@ -195,6 +195,12 @@ To use the shared configuration in a new app:
    export default [...astroConfig];
    ```
 
+## Changelog
+
+### 2026-01-17
+
+- **feat**: Added README changelog update step to create-pr command
+
 ## Learn More
 
 - [Turborepo Documentation](https://turbo.build/repo/docs)
