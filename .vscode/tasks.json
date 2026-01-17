@@ -24,6 +24,26 @@
         "reveal": "always",
         "panel": "dedicated"
       }
+    },
+    {
+      "label": "Docker: Start Worker",
+      "type": "shell",
+      "command": "./scripts/start-worker.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Docker: Stop Worker",
+      "type": "shell",
+      "command": "./scripts/stop-worker.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
     }
   ]
 }
