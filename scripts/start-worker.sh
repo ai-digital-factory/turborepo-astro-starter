@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Capture start time for duration measurement
+START_TIME=$(date +%s.%N)
+
 # Get the directory where the script is located, then go up one level to root
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -13,4 +16,9 @@ fi
 echo "Building and starting Worker service..."
 docker compose -f "$REPO_ROOT/apps/worker/docker-compose.yml" up -d --build
 
+# Capture end time and calculate duration
+END_TIME=$(date +%s.%N)
+DURATION=$(echo "$END_TIME - $START_TIME" | bc)
+
 echo "Worker service started successfully!"
+printf "Total duration: %.2f seconds\n" "$DURATION"
