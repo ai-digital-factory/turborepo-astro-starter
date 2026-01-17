@@ -1,0 +1,38 @@
+---
+description: Build and validate Docker images when Dockerfile changes are made
+globs:
+  - "**/Dockerfile"
+  - "**/Dockerfile.*"
+  - "**/docker-compose.yml"
+---
+
+# Dockerfile Validation Rule
+
+Whenever a Dockerfile or docker-compose.yml is modified, **always** build the Docker image to validate that the changes work correctly.
+
+## Steps to Follow
+
+1. **Identify the Dockerfile location**
+   - Determine which Dockerfile was modified
+   - Check if there's an associated docker-compose.yml file
+
+2. **Build the Docker image**
+   - For `apps/worker/Dockerfile`: Use `docker compose -f apps/worker/docker-compose.yml build`
+   - For other Dockerfiles: Use `docker build` with appropriate context and dockerfile path
+   - Always run from the repository root
+
+3. **Validate the build**
+   - Check that the build completes successfully (exit code 0)
+   - If build fails, report the error and stop
+   - If build succeeds, continue with normal workflow
+
+## Build Commands
+
+- **Worker service:** `docker compose -f apps/worker/docker-compose.yml build`
+- **Generic Dockerfile:** `docker build -f <path-to-dockerfile> -t <image-name> <context-path>`
+
+## Important Notes
+
+- Build validation must happen **after** Dockerfile changes
+- Do not skip validation even if other tasks are pending
+- Build failures should be reported clearly with error output
