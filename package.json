@@ -8,6 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,astro,json,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,astro,json,md,css}\"",
     "check-types": "turbo run check-types",
+    "test:worker": "./scripts/test-worker.sh",
     "prepare": "husky"
   },
   "devDependencies": {
