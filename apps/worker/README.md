@@ -27,6 +27,7 @@ Enjoy automating with our Worker! 😊
 
 ### 2026-01-18
 
+- **ci**: Add GitHub Actions workflow for worker integration tests
 - **feat**: Add integration test to verify worker status via curl and automated test script
 
 ### 2026-01-17

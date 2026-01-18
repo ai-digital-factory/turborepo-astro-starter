@@ -199,6 +199,7 @@ To use the shared configuration in a new app:
 
 ### 2026-01-18
 
+- **ci**: Add GitHub Actions workflow for worker integration tests
 - **feat**: Add integration test script for worker and root-level `test:worker` command
 
 ### 2026-01-17
