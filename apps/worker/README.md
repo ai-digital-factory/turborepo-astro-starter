@@ -25,6 +25,10 @@ Enjoy automating with our Worker! 😊
 
 ## Changelog
 
+### 2026-01-18
+
+- **feat**: Add integration test to verify worker status via curl and automated test script
+
 ### 2026-01-17
 
 - **perf**: Optimized Docker build with turbo prune - reduced build time from 135s to ~60-80s (cold) and ~20-30s (warm rebuilds)

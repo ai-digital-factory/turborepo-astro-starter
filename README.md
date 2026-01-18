@@ -197,6 +197,10 @@ To use the shared configuration in a new app:
 
 ## Changelog
 
+### 2026-01-18
+
+- **feat**: Add integration test script for worker and root-level `test:worker` command
+
 ### 2026-01-17
 
 - **chore**: Update attach-plan-to-issue command to require plan content and add cleanup step
