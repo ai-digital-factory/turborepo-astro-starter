@@ -197,6 +197,10 @@ To use the shared configuration in a new app:
 
 ## Changelog
 
+### 2026-01-20
+
+- **feat**: Implement Convex workflow for event processing including new tasks and workflow definitions
+
 ### 2026-01-18
 
 - **ci**: Add GitHub Actions workflow for worker integration tests

@@ -62,6 +62,10 @@ CONVEX_URL="https://starter-convex-backend.reelfreakz.com"
 
 ## Changelog
 
+### 2026-01-20
+
+- **feat**: Implement Convex workflow with `@convex-dev/workflow` and `@convex-dev/workpool`. Added `convex.config.ts`, `tasks.ts`, and `workflows.ts`. Updated `events.ts` with workflow trigger.
+
 ### 2026-01-17
 
 - **chore**: Removed port bindings from docker-compose.yml for starter-backend and starter-dashboard services

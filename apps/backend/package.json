@@ -10,6 +10,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@convex-dev/workflow": "^0.2.6",
+    "@convex-dev/workpool": "^0.2.18",
     "convex": "^1.26.2"
   },
   "devDependencies": {
