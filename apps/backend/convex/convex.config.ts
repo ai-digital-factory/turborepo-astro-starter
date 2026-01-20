@@ -4,7 +4,7 @@ import workpool from "@convex-dev/workpool/convex.config";
 
 const app = defineApp();
 
-app.use(workflow);
 app.use(workpool);
+app.use(workflow);
 
 export default app;
