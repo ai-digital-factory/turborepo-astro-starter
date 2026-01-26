@@ -62,6 +62,10 @@ CONVEX_URL="https://starter-convex-backend.reelfreakz.com"
 
 ## Changelog
 
+### 2026-01-26
+
+- **feat**: Add Cloudflare R2 file upload support using `@convex-dev/r2`. Added `r2.ts` and updated `schema.ts` with `uploads` table.
+
 ### 2026-01-20
 
 - **feat**: Implement Convex workflow with `@convex-dev/workflow` and `@convex-dev/workpool`. Added `convex.config.ts`, `tasks.ts`, and `workflows.ts`. Updated `events.ts` with workflow trigger.
