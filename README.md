@@ -197,6 +197,10 @@ To use the shared configuration in a new app:
 
 ## Changelog
 
+### 2026-01-26
+
+- **feat**: Add Cloudflare R2 file upload support to desktop app
+
 ### 2026-01-20
 
 - **feat**: Implement Convex workflow for event processing including new tasks and workflow definitions
