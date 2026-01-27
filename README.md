@@ -199,6 +199,10 @@ To use the shared configuration in a new app:
 
 ### 2026-01-27
 
+- **ci**: add pnpm format and pnpm lint check in workflow
+
+### 2026-01-27
+
 - **chore**: remove pnpm lint from husky pre-commit hook
 
 ### 2026-01-26
