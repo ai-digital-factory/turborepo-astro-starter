@@ -197,6 +197,10 @@ To use the shared configuration in a new app:
 
 ## Changelog
 
+### 2026-01-27
+
+- **chore**: remove pnpm lint from husky pre-commit hook
+
 ### 2026-01-26
 
 - **feat**: Add Cloudflare R2 file upload support to desktop app
