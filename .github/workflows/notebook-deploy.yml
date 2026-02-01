@@ -23,7 +23,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9.0.0
+          version: 9.15.4
 
       - name: Get pnpm store directory
         shell: bash
@@ -54,11 +54,11 @@ jobs:
         run: pnpm install
 
       - name: Build Notebooks
-        run: pnpm --filter notebook build
+        run: pnpm -C apps/notebook run build
 
       - name: Deploy to Cloudflare Pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: pnpm --filter notebook run deploy
+        run: pnpm -C apps/notebook run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
