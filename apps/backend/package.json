@@ -7,7 +7,7 @@
     "dev": "convex dev",
     "codegen": "convex codegen",
     "lint": "eslint . && pnpm run check-types",
-    "check-types": "tsc --noEmit"
+    "check-types": "pnpm run codegen && tsc --noEmit"
   },
   "dependencies": {
     "@convex-dev/r2": "^0.7.1",
