@@ -12,7 +12,4 @@ docker compose -f "$REPO_ROOT/apps/caddy/docker-compose.yml" down
 echo "Stopping Worker service..."
 docker compose -f "$REPO_ROOT/apps/worker/docker-compose.yml" down
 
-echo "Stopping Backend services..."
-docker compose -f "$REPO_ROOT/apps/backend/docker-compose.yml" down
-
 echo "All services stopped successfully!"
