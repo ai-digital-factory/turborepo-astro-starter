@@ -1,0 +1,57 @@
+name: Worker Docker CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/worker/**"
+      - "packages/math/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/worker-docker.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "apps/worker/**"
+      - "packages/math/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/worker-docker.yml"
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: apps/worker/Dockerfile
+      - name: Test Build (Dry Run)
+        run: docker build -t worker-test -f apps/worker/Dockerfile . --target base
+
+  build-and-push:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.reelfreakz.com
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Build and Push
+        run: |
+          IMAGE_NAME=registry.reelfreakz.com/worker
+          COMMIT_SHA=${{ github.sha }}
+          docker build \
+            -t $IMAGE_NAME:latest \
+            -t $IMAGE_NAME:$COMMIT_SHA \
+            -f apps/worker/Dockerfile .
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$COMMIT_SHA
+      - name: Cleanup local images
+        run: |
+          IMAGE_NAME=registry.reelfreakz.com/worker
+          COMMIT_SHA=${{ github.sha }}
+          docker rmi $IMAGE_NAME:latest $IMAGE_NAME:$COMMIT_SHA

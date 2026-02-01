@@ -25,6 +25,10 @@ Enjoy automating with our Worker! 😊
 
 ## Changelog
 
+### 2026-02-01
+
+- **feat**: Add worker docker CI/CD workflow with commit SHA tagging
+
 ### 2026-01-18
 
 - **ci**: Add GitHub Actions workflow for worker integration tests
