@@ -24,10 +24,6 @@ Before you begin, ensure you have the following installed:
 
 - **Node.js** >= 22
 - **pnpm** 9.0.0 (or compatible version)
-- **Docker with Compose V2** - Required for infrastructure services.
-  - The `scripts/start-docker.sh` script invokes the V2 CLI via `docker compose`.
-  - **Docker Desktop** includes Compose V2 by default.
-  - **Linux users** must ensure the `docker compose` command is available (not just `docker-compose`).
 - **Jupyter** (for notebook conversion) - `pip install jupyter`
 
 ## Getting Started
@@ -94,7 +90,6 @@ turborepo-astro-starter/
 │   ├── worker/        # Node.js worker for long-running tasks
 │   │   ├── src/       # Source files
 │   │   ├── Dockerfile
-│   │   ├── docker-compose.yml
 │   │   └── package.json
 ├── apps/backend/      # Convex backend configuration and functions
 │   ├── convex/        # Convex functions (schema, queries, mutations)
@@ -198,6 +193,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **chore**: Remove Docker Compose files, Caddy configuration, and associated scripts
 - **feat**: Add worker docker CI/CD workflow with commit SHA tagging
 - **ci**: Remove Convex secrets from CI workflow as generated files are now checked into the repo
 - **feat**: Add GitHub Action for automated blog deployment to Cloudflare Pages

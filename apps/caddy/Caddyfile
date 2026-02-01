@@ -1,3 +1,0 @@
-starter-worker.reelfreakz.com {
-    reverse_proxy starter-worker:3001
-}
