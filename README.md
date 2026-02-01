@@ -198,6 +198,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **ci**: Remove Convex secrets from CI workflow as generated files are now checked into the repo
 - **feat**: Add GitHub Action for automated blog deployment to Cloudflare Pages
 - **feat**: Add CI/CD workflow for notebook deployment
 - **ci**: Add unified CI workflow with format, lint, and integration test jobs
