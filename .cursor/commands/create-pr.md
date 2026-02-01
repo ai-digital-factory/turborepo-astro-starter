@@ -77,15 +77,30 @@ Follow these steps carefully:
 - Display the PR URL as a clickable markdown hyperlink: `[<PR Title>](<PR_URL>)`.
 - Also display the raw URL for reference.
 
-### 8. Checkout Main & Fetch Latest
+### 8. Monitor CI & Iterate on Fixes
 
-- After successfully creating the PR (Step 7), checkout to the default branch detected in Step 3: `git checkout <default-branch>`.
+- After creating the PR, wait for GitHub Actions to complete: `gh pr checks --watch`.
+- If all checks pass, proceed to Step 9.
+- If any checks fail:
+  - Identify the failing jobs: `gh pr checks --json state,name,url`.
+  - Retrieve logs for the failing jobs: `gh run view --log` or `gh run view --job <job-id> --log`.
+  - Analyze the logs to understand the failure (e.g., linting, formatting, or test errors).
+  - Apply the necessary code fixes to resolve the issues.
+  - Re-run `pnpm lint` and `pnpm format` locally to ensure consistency.
+  - Commit the fixes: `git commit -m "fix: address CI failures for issue #<number>"`.
+  - Push the changes: `git push`.
+  - Return to the beginning of Step 8 and wait for the new CI run to complete.
+- Continue this iterative process until all CI checks pass.
+
+### 9. Checkout Main & Fetch Latest
+
+- After all CI checks have passed (Step 8), checkout to the default branch detected in Step 3: `git checkout <default-branch>`.
 - Fetch the latest changes from origin: `git fetch origin <default-branch>` (this updates remote-tracking refs).
 - Fast-forward the local branch to match the remote: `git merge --ff-only origin/<default-branch>` (this actually moves the local branch to the remote tip).
-- This ensures the local main branch is up-to-date after PR creation.
+- This ensures the local main branch is up-to-date after PR creation and CI validation.
 - Handle errors gracefully (e.g., if checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process).
 
-### 9. Error Handling
+### 10. Error Handling
 
 - If any command fails, stop and explain the error to the user.
 - If fetching the default branch fails, stop and inform the user to check their network connection and repository access.
@@ -97,7 +112,10 @@ Follow these steps carefully:
   - If reading a README file fails, log a warning but continue (don't stop the process)
   - If writing a README file fails, stop and inform the user
   - If the README file is read-only or has permission issues, inform the user
-- For checkout and fetch operations (Step 8):
+- For CI monitoring and fixing (Step 8):
+  - If `gh pr checks --watch` fails or times out, inform the user and ask if they want to retry or proceed manually.
+  - If logs cannot be retrieved, inform the user and suggest checking the GitHub UI.
+- For checkout and fetch operations (Step 9):
   - If checkout fails due to uncommitted changes in the feature branch, inform the user but don't stop the process (the PR was already created successfully)
   - If checkout fails for other reasons, inform the user but don't stop the process (the PR was already created successfully)
   - If fetch fails, inform the user but don't stop the process (the PR was already created successfully)
