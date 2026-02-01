@@ -1,0 +1,53 @@
+name: Worker Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/worker/**'
+      - 'packages/math/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/worker-test.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/worker/**'
+      - 'packages/math/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/worker-test.yml'
+
+jobs:
+  test-worker:
+    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-${{ runner.os }}-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run worker integration tests
+        run: pnpm test:worker
