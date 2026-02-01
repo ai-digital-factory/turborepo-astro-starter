@@ -5,10 +5,12 @@ on:
     branches: [main]
     paths:
       - 'apps/notebook/**'
+      - '.github/workflows/notebook-deploy.yml'
   pull_request:
     branches: [main]
     paths:
       - 'apps/notebook/**'
+      - '.github/workflows/notebook-deploy.yml'
 
 jobs:
   deploy:
