@@ -3,6 +3,12 @@ name: Integration Tests
 on:
   pull_request:
     branches: [ main ]
+  workflow_call:
+    secrets:
+      CONVEX_DEPLOYMENT:
+        required: false
+      CONVEX_URL:
+        required: false
 
 jobs:
   test-worker:
