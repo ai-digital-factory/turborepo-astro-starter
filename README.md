@@ -198,6 +198,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **ci**: Create unified CI workflow for format, lint, and integration tests, replacing standalone integration tests
 - **chore**: Remove self-hosting Convex infrastructure and update management scripts
 
 ### 2026-01-27
