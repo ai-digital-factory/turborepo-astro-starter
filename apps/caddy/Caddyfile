@@ -1,11 +1,3 @@
-starter-convex-dashboard.reelfreakz.com {
-    reverse_proxy starter-dashboard:6791
-}
-
-starter-convex-backend.reelfreakz.com {
-    reverse_proxy starter-backend:3210
-}
-
 starter-worker.reelfreakz.com {
     reverse_proxy starter-worker:3001
 }

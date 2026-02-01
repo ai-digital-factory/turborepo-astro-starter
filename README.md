@@ -24,7 +24,7 @@ Before you begin, ensure you have the following installed:
 
 - **Node.js** >= 22
 - **pnpm** 9.0.0 (or compatible version)
-- **Docker with Compose V2** - Required for backend and infrastructure services.
+- **Docker with Compose V2** - Required for infrastructure services.
   - The `scripts/start-docker.sh` script invokes the V2 CLI via `docker compose`.
   - **Docker Desktop** includes Compose V2 by default.
   - **Linux users** must ensure the `docker compose` command is available (not just `docker-compose`).
@@ -98,7 +98,6 @@ turborepo-astro-starter/
 │   │   └── package.json
 ├── apps/backend/      # Convex backend configuration and functions
 │   ├── convex/        # Convex functions (schema, queries, mutations)
-│   ├── docker-compose.yml
 │   └── package.json
 ├── packages/
 │   ├── eslint-config/ # Shared ESLint configuration
@@ -121,7 +120,7 @@ turborepo-astro-starter/
 - **desktop** - An Electron application with React frontend located in `apps/desktop/`.
 - **notebook** - A system for converting Jupyter Notebooks to a searchable HTML collection, located in `apps/notebook/`.
 - **worker** - A Node.js worker service for CPU-intensive tasks, located in `apps/worker/`.
-- **convex** - Self-hosted Convex backend and database functions, located in `apps/backend/`.
+- **convex** - Convex backend functions and configuration, located in `apps/backend/`.
 
 ### Packages
 
@@ -196,6 +195,10 @@ To use the shared configuration in a new app:
    ```
 
 ## Changelog
+
+### 2026-02-01
+
+- **chore**: Remove self-hosting Convex infrastructure and update management scripts
 
 ### 2026-01-27
 

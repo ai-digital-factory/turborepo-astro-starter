@@ -10,9 +10,6 @@ if ! docker network inspect "$NETWORK_NAME" >/dev/null 2>&1; then
   docker network create "$NETWORK_NAME"
 fi
 
-echo "Starting Backend services..."
-docker compose -f "$REPO_ROOT/apps/backend/docker-compose.yml" up -d
-
 echo "Starting Caddy services..."
 docker compose -f "$REPO_ROOT/apps/caddy/docker-compose.yml" up -d
 
