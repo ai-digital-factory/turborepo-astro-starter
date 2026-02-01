@@ -197,6 +197,10 @@ To use the shared configuration in a new app:
 
 ## Changelog
 
+### 2026-02-01
+
+- **ci**: add pnpm format and pnpm lint check in workflow
+
 ### 2026-01-27
 
 - **ci**: add pnpm format and pnpm lint check in workflow
