@@ -1,8 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
+  "globalPassThroughEnv": ["CONVEX_DEPLOYMENT", "CONVEX_URL"],
   "tasks": {
     "codegen": {
+      "env": ["CONVEX_DEPLOYMENT", "CONVEX_URL"],
       "outputs": ["convex/_generated/**"]
     },
     "build": {
