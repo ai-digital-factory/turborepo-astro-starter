@@ -27,6 +27,7 @@ Enjoy automating with our Worker! 😊
 
 ### 2026-02-01
 
+- **chore**: Remove Docker Compose configuration
 - **feat**: Add worker docker CI/CD workflow with commit SHA tagging
 
 ### 2026-01-18
@@ -37,4 +38,3 @@ Enjoy automating with our Worker! 😊
 ### 2026-01-17
 
 - **perf**: Optimized Docker build with turbo prune - reduced build time from 135s to ~60-80s (cold) and ~20-30s (warm rebuilds)
-- **chore**: Removed port bindings from docker-compose.yml for starter-worker service
