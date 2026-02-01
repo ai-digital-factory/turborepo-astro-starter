@@ -193,6 +193,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **fix**: Rename notebook deployment script and update CI/CD workflow to resolve `ERR_PNPM_INVALID_DEPLOY_TARGET`
 - **chore**: Remove Docker Compose files, Caddy configuration, and associated scripts
 - **feat**: Add worker docker CI/CD workflow with commit SHA tagging
 - **ci**: Remove Convex secrets from CI workflow as generated files are now checked into the repo
