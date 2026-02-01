@@ -5,5 +5,6 @@ dist*
 .pnpm-store
 *.tsbuildinfo
 *.env*
-_generated*
+# Allow Convex generated files for CI
+!apps/backend/convex/_generated/
 plans
