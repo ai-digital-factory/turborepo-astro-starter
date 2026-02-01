@@ -194,6 +194,7 @@ To use the shared configuration in a new app:
 ### 2026-02-01
 
 - **ci**: Remove pull_request trigger from notebook-deploy.yml to prevent unnecessary runs on PRs
+- **ci**: Extract `test-worker` job to a separate workflow with path filters to optimize CI runs
 - **fix**: Rename notebook deployment script and update CI/CD workflow to resolve `ERR_PNPM_INVALID_DEPLOY_TARGET`
 - **chore**: Remove Docker Compose files, Caddy configuration, and associated scripts
 - **feat**: Add worker docker CI/CD workflow with commit SHA tagging
