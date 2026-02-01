@@ -193,6 +193,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **ci**: Remove unnecessary pull_request trigger for notebook deployment workflow
 - **chore**: Remove Docker Compose files, Caddy configuration, and associated scripts
 - **feat**: Add worker docker CI/CD workflow with commit SHA tagging
 - **ci**: Remove Convex secrets from CI workflow as generated files are now checked into the repo
