@@ -198,6 +198,7 @@ To use the shared configuration in a new app:
 
 ### 2026-02-01
 
+- **feat**: Add CI/CD workflow for notebook deployment
 - **ci**: Add unified CI workflow with format, lint, and integration test jobs
 - **chore**: Remove self-hosting Convex infrastructure and update management scripts
 
